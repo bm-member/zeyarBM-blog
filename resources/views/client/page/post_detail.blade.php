@@ -8,6 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3>{{ $post->title }}</h3>
+                    <img style="text-align: center;" src="{{asset($post->image)}}">
                     <p>{{ $post->content }}</p>
                     <p>Post {{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</p>
                     <a href="{{ url("/") }}" class="btn btn-primary"> &laquo; Back</a>
