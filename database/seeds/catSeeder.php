@@ -17,6 +17,7 @@ class catSeeder extends Seeder
             $post = new Category();
             $post->name = $faker->text('10');
             $post->description = $faker->text('50');
+            $post->user_id = rand(1,3);
             $post->save();
         }
     }

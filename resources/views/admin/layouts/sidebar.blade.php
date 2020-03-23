@@ -61,7 +61,7 @@
                         @endcan 
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/profile') }}" class="nav-link">
+                            <a href="{{ url('admin/'.auth()->user()->id.'/profile') }}" class="nav-link">
                                 <i class="fas fa-user nav-icon"></i>
                                 <p>Profile</p>
                             </a>

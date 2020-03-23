@@ -18,7 +18,6 @@ class catPostSeeder extends Seeder
             $post = new categoryPostModel();
             $post->post_id = rand(1, 20);
             $post->category_id = rand(1, 5);
-
             $post->save();
         }
     }
