@@ -26,10 +26,23 @@
                         <label>Post Content</label>
                         <textarea name="content" rows="10" class="form-control"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Post Image</label>
-                        <input type="file" name="image" class="form-control-file">
-                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Post Image</label>
+                                <input type="file" name="image" class="form-control-file">
+                            </div>
+                        </div>
+                        <div class="col-md-8"> 
+                            <h2>Plese Choose Category</h2>
+                            @foreach($Categories as $category)                           
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="checkbox" name = "category[]" id="inlineCheckbox{{$category->id}}" value="{{$category->id}}">
+                              <label class="form-check-label">{{$category->name}}</label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>                    
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
             </div>

@@ -35,7 +35,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3>{{ $post->title }}</h3>
-                            <img src="{{ $post->image }}" alt="Post Image">
+                            <img src="/{{ $post->image }}" alt="Post Image" class="w-100">
                             <p>{{ Str::limit($post->content, 100, '') }}</p>
                             <a href="{{ url("post/$post->id") }}" class="btn btn-primary">View Detail &raquo;</a>
                         </div>

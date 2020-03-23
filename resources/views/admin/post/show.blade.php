@@ -15,7 +15,7 @@
                     {{ $post->title }}
                 </div>
                 <div class="card-body">
-                <img src="{{ asset($post->image ) }}" alt="">
+                <img src="{{ asset($post->image ) }}" alt="" class="w-100">
                 <p>
                     {{ $post->content }}
                 </p>

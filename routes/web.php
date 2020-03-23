@@ -42,8 +42,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // User Routes
     Route::get('/user', 'UserController@index');
     Route::get('/{user_id}/profile', 'UserController@show');
-
-
+    Route::get('user/{user_id}/edit', 'UserController@edit');
+    Route::get('user/create', 'UserController@create');
+    Route::post('user/store', 'UserController@store');
+    Route::post('user/{user_id}/update', 'UserController@update');
+    Route::get('user/{user_id}/delete', 'UserController@destroy');
 
 });
 

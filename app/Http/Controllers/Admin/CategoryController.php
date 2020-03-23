@@ -32,6 +32,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->user_id = auth()->user()->id;
         $category->save();
         return redirect('admin/category')
         ->with('success', 'A catgory created successfully.'); 

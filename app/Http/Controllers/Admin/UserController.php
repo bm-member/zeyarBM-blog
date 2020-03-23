@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/user/new');
     }
 
     /**
@@ -37,7 +37,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->input('role');        
+        $user->save();
+        return redirect('admin/user')->with('success','User Information is update');
     }
 
     /**
@@ -60,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = user::find($id);
+        return view('admin/user/edit')->with(compact('user'));
     }
 
     /**
@@ -72,7 +79,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = user::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->input('role');        
+        $user->save();
+        return redirect('admin/user')->with('success','User Information is update');
     }
 
     /**
@@ -83,6 +96,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = user::find($id);
+        $user->delete();
+        return redirect('admin/user')->with('success','User is Delete');
     }
 }

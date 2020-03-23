@@ -6,6 +6,8 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use App\Category;
+use App\categoryPostModel;
 
 class PostController extends Controller
 {
@@ -46,7 +48,8 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admin.post.create');
+        $Categories = Category::all();
+        return view('admin.post.create')->with(compact('Categories'));
     }
 
     public function store(PostRequest $request)
@@ -60,18 +63,35 @@ class PostController extends Controller
         // ]);
 
         $post = new Post();
+
+
         $post->title = $request->title;
         $post->content = $request->content;
         $post->user_id = auth()->id();
-
         // Image upload
         $imagePath = public_path('image');
         $imageName = 'image/' . time() . $request->file('image')->getClientOriginalName();
         $request->file('image')->move($imagePath, $imageName);
         $post->image = $imageName;
 
+        $categories = $request->category;
+        // $categoryPost->post_id = auth()->id();
+        // $categoryPost->category_id = input('');
         $post->save();
-        return redirect('admin/post')->with('success', 'A post created successfully.');
+
+        $post_ID = $post->id;
+
+        if(count($categories)>0){
+            for ($i = 0; $i < count($categories) ; $i++) {
+                $categoryPost = new categoryPostModel();
+
+                $categoryPost->category_id = $categories[$i];                
+                $categoryPost->post_id = $post_ID;
+                $categoryPost->save();
+            }
+        }
+        
+        return redirect('admin/post/')->with('success' , 'A post created successfully.');
     }
 
     public function show($id)
